@@ -1,9 +1,10 @@
 package Tasca1.N1.Ex1;
 
-public class Instrumento {
+public abstract class  Instrumento {
     private String nombre;
     private int precio;
     public static int contadorInstancias = 0;
+
 
     public Instrumento(String nombre, int precio) {
         this.nombre = nombre;
@@ -30,6 +31,7 @@ public class Instrumento {
     public String tocar() {
         return "";
     }
+
 
     static {
         System.out.println("La clase instrumento ha sido cargada: " + contadorInstancias);
