@@ -1,4 +1,4 @@
-package Tasca1.N2;
+package tasca1.n2;
 
 public class Main {
     public static void main(String[] args) {

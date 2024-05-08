@@ -1,4 +1,4 @@
-package Tasca1.N1.Ex2;
+package tasca1.n1.Ex2;
 
 public class Coche {
 

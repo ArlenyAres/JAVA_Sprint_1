@@ -1,4 +1,4 @@
-package Tasca1.N1.Ex1;
+package tasca1.n1.Ex1;
 
 public class InstrumentoDePercusion  extends Instrumento{
     public InstrumentoDePercusion(String nombre, int precio) {

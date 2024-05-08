@@ -119,3 +119,38 @@ En este sentido, una interfaz de Java presenta las siguientes características:
 #### Se pueden declarar métodos estáticos (Static).
 
 ##### Por otro lado, es necesario explicar la diferencia entre una interfaz de Java y una clase abstracta. Mientras que la primera es totalmente declarativa, la segunda puede implementar métodos que serán heredados por otras clases. Además, las clases abstractas solo pueden heredarse una vez, mientras que las interfaces permiten la herencia múltiple. 
+
+## TASCA 2
+
+### Una excepción:
+Son eventos anómalos que pueden ocurrir durante la ejecución de un programa y que alteran el flujo normal de ejecución. Estos eventos representan situaciones inesperadas o errores que deben ser manejados de manera adecuada para garantizar que el programa continúe ejecutándose de y evitar así interrupciones.
+
+### Tipos de excepciones en Java
+
+Las excepciones se dividen en tres categorías principales, cada una heredada de la clase base Throwable. 
+
+### Estas categorías son:
+
+#### Checked exceptions: 
+Son excepciones que se deben declarar en la firma del método o capturar explícitamente en un bloque try-catch. Si una excepción comprobada no se maneja correctamente, el código no se compilará. Estas excepciones se heredan de la clase Exception.
+
+#### Unchecked exceptions:
+Son excepciones que no están obligadas a ser manejadas explícitamente. Estas excepciones ocurren durante la ejecución del programa y no se requiere que sean declaradas en la firma del método o capturadas mediante un bloque try-catch. Se heredan de la clase RuntimeException.
+
+#### Errors: 
+Son problemas graves que generalmente están fuera del control del programador y no deben manejarse explícitamente. Estos errores indican problemas serios que deberían detener la ejecución del programa. Se heredan de la clase Error.
+
+### Algunas palabras sobre las palabras clave
+#### El manejo de excepciones en Java se basa en el uso de las siguientes palabras clave en el programa:
+#### try : 
+define un bloque de código donde puede ocurrir una excepción;
+#### catch - 
+define un bloque de código donde se manejan las excepciones;
+#### finally : 
+define un bloque de código opcional que, si está presente, se ejecuta independientemente de los resultados del bloque de prueba.
+Estas palabras clave se usan para crear construcciones especiales en el código:
+#### try{}catch , try{}catch{}finally , try{}finally{} .
+#### throw : 
+se utiliza para generar una excepción;
+#### throws : 
+se utiliza en la firma del método para advertir que el método puede generar una excepción.
