@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class Venta {
     private ArrayList<Producto> productos;
-    private double totalPrecio;
+    private double totalPrecio = 0.0;
 
-    public Venta(ArrayList<Producto> productos, double totalPrecio) {
-        this.productos = productos;
-        this.totalPrecio = totalPrecio;
+    public Venta() {
+//        this.productos = productos;
+//        this.totalPrecio = totalPrecio;
     }
+
 
     public ArrayList<Producto> getProductos() {
         return productos;
@@ -27,17 +28,17 @@ public class Venta {
 
 
     public void agregarProducto(Producto producto) {
-        this.productos.add(producto);
-        //totalPrecio += producto.getPrecio();
+//        this.productos.add(producto);
+         totalPrecio += producto.getPrecio();
     }
 
     public void calcularTotal() throws VentaVaciaException { // Este metodo calcula el precio total de todos los productos en la venta
         try {
-            if (productos.isEmpty()) { //Verifica si esta vacia la lsita
+            if (this.productos.isEmpty()) { //Verifica si esta vacia la lsita
                 throw new VentaVaciaException();  //creo un nuevo objeto excepcion para coger el error y da un mensaje que si la lista esta vacia no hay venta
             } else {
                 for (Producto producto : productos) { // se recurre la lista para sumar los precios
-                    double total = producto.getPrecio();
+                  this.totalPrecio += producto.getPrecio();
                 }
             }
         }catch (VentaVaciaException e ) {
