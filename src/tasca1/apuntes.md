@@ -154,3 +154,8 @@ Estas palabras clave se usan para crear construcciones especiales en el código:
 se utiliza para generar una excepción;
 #### throws : 
 se utiliza en la firma del método para advertir que el método puede generar una excepción.
+
+## Tasca 2 Resumen
+Herencia: En Java, una clase puede heredar de otra clase, lo que significa que puede utilizar sus atributos y métodos. Por ejemplo, VentaVaciaException hereda de Exception.
+Excepciones Personalizadas: Las excepciones personalizadas son útiles para manejar situaciones específicas en tu aplicación. Se definen extendiendo la clase Exception o alguna de sus subclases.
+Lanzar y Capturar Excepciones: Usamos throw para lanzar una excepción y try-catch para capturarla y manejarla adecuadamente.
