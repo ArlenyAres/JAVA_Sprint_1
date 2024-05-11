@@ -1,11 +1,15 @@
-package tasca2.n1;
+package tasca2.n1.modelos;
 
 public class Producto {
 
     private String nombre;
-    private int precio;
+    private double precio;
 
-    public Producto(String nombre, int precio) {
+    public Producto() {
+
+    }
+
+    public Producto(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -16,14 +20,12 @@ public class Producto {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
-
-
 
 
 }
