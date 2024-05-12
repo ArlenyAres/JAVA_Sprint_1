@@ -1,4 +1,4 @@
-package tasca1.n1.Ex2;
+package tasca1Herencia.n1.Ex2;
 
 public class Coche {
 

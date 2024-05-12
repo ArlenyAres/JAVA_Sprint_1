@@ -1,8 +1,8 @@
-package tasca2.n1;
+package tasca2Exceptions.n1;
 
 import java.util.ArrayList;
-import tasca2.n1.modelos.Producto;
-import tasca2.n1.modelos.Venta;
+import tasca2Exceptions.n1.modelos.Producto;
+import tasca2Exceptions.n1.modelos.Venta;
 
 public class Main {
 

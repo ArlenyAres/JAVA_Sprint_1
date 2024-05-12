@@ -1,4 +1,4 @@
-package tasca2.n1;
+package tasca2Exceptions.n1;
 
 public class VentaVaciaException extends Exception {
  public VentaVaciaException() {

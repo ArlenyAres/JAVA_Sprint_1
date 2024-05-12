@@ -1,6 +1,6 @@
-package tasca2.n1.modelos;
+package tasca2Exceptions.n1.modelos;
 
-import tasca2.n1.VentaVaciaException;
+import tasca2Exceptions.n1.VentaVaciaException;
 
 import java.util.ArrayList;
 

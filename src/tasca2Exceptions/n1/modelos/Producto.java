@@ -1,4 +1,4 @@
-package tasca2.n1.modelos;
+package tasca2Exceptions.n1.modelos;
 
 public class Producto {
 

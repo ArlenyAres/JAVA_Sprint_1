@@ -1,4 +1,4 @@
-package tasca1.n2;
+package tasca1Herencia.n2;
 
 public class Telefono {
     private String Marca;
