@@ -18,13 +18,13 @@ public class Venta {
 
 
 
-    public void calcularTotal() throws VentaVaciaException { // Este metodo calcula el precio total de todos los productos en la venta
-            if (productos.isEmpty()) { //Verifica si esta vacia la lsita
-                throw new VentaVaciaException("Para hacer una venta primero tiene que agregar productos");  //creo un nuevo objeto excepcion para coger el error y da un mensaje que si la lista esta vacia no hay venta
+    public void calcularTotal() throws VentaVaciaException {
+            if (productos.isEmpty()) {
+                throw new VentaVaciaException("Para hacer una venta primero tiene que agregar productos");
             } else {
-                for (Producto producto : productos) { // se recurre la lista para sumar los precios
+                for (Producto producto : productos) {
                     totalPrecio += producto.getPrecio();
-                    // totalPrecio= totalPrecio + producto.getPrecio();
+
                 }
             }
     }

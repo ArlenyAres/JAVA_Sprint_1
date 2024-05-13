@@ -11,7 +11,7 @@ public class Entrada {
             System.out.println(mensaje);
             return sc.nextByte();
         }catch(InputMismatchException e){
-            System.err.println("Error de formato");
+            System.err.println("Error de formato al entrar el numero");
             sc.nextLine();
 
             return leerByte(mensaje);
@@ -25,7 +25,7 @@ public class Entrada {
             return sc.nextInt();
         }catch(InputMismatchException e){
             sc.nextLine();
-            System.err.println("Error de formato");
+            System.err.println("Error de formato al entrar el numero entero");
 
             return leerInt(mensaje);
         }
@@ -37,7 +37,7 @@ public class Entrada {
             return sc.nextFloat();
         }catch(InputMismatchException e){
             sc.nextLine();
-            System.err.println("Error de formato");
+            System.err.println("Error de formato, los numeros se tienen que separar por comas ");
 
             return leerFloat(mensaje);
         }
@@ -49,7 +49,7 @@ public class Entrada {
             return sc.nextDouble();
         }catch(InputMismatchException e){
             sc.nextLine();
-            System.err.println("Error de formato");
+            System.err.println("Error de formato, los numeros se tienen que separar por comas ");
 
             return leerDouble(mensaje);
         }
@@ -66,7 +66,7 @@ public class Entrada {
             }
         }catch(Exception e){
             sc.nextLine();
-            System.err.println("Error de formato");
+            System.err.println("Error de formato, debe introducir un solo caracter");
 
             return llegirChar(mensaje);
         }
@@ -84,7 +84,7 @@ public class Entrada {
             }
         }catch(Exception e){
             sc.nextLine();
-            System.err.println("Error de formato");
+            System.err.println("Error de formato, debe introducir una palabra ");
 //            sc.nextLine();
 
             return llegirString(mensaje);
@@ -105,21 +105,13 @@ public class Entrada {
           }
       }catch(Exception e){
           sc.nextLine();
-          System.err.println("Error de formato");
+          System.err.println("Error de formato, debe introducir s o n");
 
           return llegirSiNo(mensaje);
       }
   }
 
-    // con este metodo comprobamos si el dato es un nuemero o no
-//    public static boolean isNumericUsingParse(String str) {
-//        try {
-//            Integer.parseInt(str);
-//            return true;
-//        } catch (NumberFormatException e) {
-//            return false;
-//        }
-//    }
+
 
     public static void close(){
         sc.close();
