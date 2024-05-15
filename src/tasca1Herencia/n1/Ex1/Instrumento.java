@@ -28,9 +28,7 @@ public abstract class  Instrumento {
         this.precio = precio;
     }
 
-    public String tocar() {
-        return "";
-    }
+    public abstract String tocar();
 
 
     static {

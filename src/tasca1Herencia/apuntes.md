@@ -163,3 +163,10 @@ Excepciones Personalizadas: Las excepciones personalizadas son útiles para mane
 
 
 Lanzar y Capturar Excepciones: Usamos throw para lanzar una excepción y try-catch para capturarla y manejarla adecuadamente.
+
+
+## Colletions
+N2 ejecicio 2
+List<Restaurante> sortedRestaurantes = restaurantes.stream()
+.sorted(Comparator.comparing(Restaurante::getNombre).thenComparingInt(Restaurante::getPuntuacion))
+.collect(Collectors.toList());

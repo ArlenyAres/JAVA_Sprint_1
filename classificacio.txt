@@ -1,0 +1,2 @@
+Nombre: ares
+ Puntuacion: 2
