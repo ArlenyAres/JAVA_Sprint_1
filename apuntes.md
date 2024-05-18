@@ -120,6 +120,36 @@ En este sentido, una interfaz de Java presenta las siguientes características:
 
 ##### Por otro lado, es necesario explicar la diferencia entre una interfaz de Java y una clase abstracta. Mientras que la primera es totalmente declarativa, la segunda puede implementar métodos que serán heredados por otras clases. Además, las clases abstractas solo pueden heredarse una vez, mientras que las interfaces permiten la herencia múltiple. 
 
+### Las interfaces son tipos de datos
+Al igual que las clases definen tipos concretos, las interfaces definen tipos abstractos de datos.
+
+#### Como ya hemos visto, en Java una interface se define del siguiente modo:
+
+````
+[modificador acceso] interface nombreDelInterface {
+[public static final] [tipo] constante = valor;
+[public abstract] [tipo] nombreDelMetodo(argumentos);
+}
+````
+Pueden formar parte de una interface:
+
+Definición de constantes .
+
+Declaración de métodos.
+
+
+### Las interfaces son tipos de datos
+Las clases implementan (implements) interface.
+
+La clase que implementa una interface debe definir todos los métodos declarados en la interface.
+
+Por defecto, los métodos declarados en una interface son public abstract.
+
+Por defecto, todas las constantes definidas en una interface son public static final.
+
+Para asegurarnos que un método de la clase está definiendo un método declarado en la interface utilizamos la anotación @Override sobre el método.
+
+
 ## TASCA 2
 
 ### Una excepción:
@@ -163,6 +193,105 @@ Excepciones Personalizadas: Las excepciones personalizadas son útiles para mane
 
 
 Lanzar y Capturar Excepciones: Usamos throw para lanzar una excepción y try-catch para capturarla y manejarla adecuadamente.
+
+
+
+## Que es una excepción
+Las excepciones, como todo en Java durante la ejecución de nuestras aplicaciones, son instancias de clases concretas.
+
+Java nos informa de que algo ha ido mal porque recibimos un objeto de una clase que representa un determinado error.
+
+int[] array = new int[10];
+System.out.println(array[10]);
+Para informarnos del error anterior, Java nos hace llegar una instancia de la clase ArrayIndexOutOfBoundsException.
+
+FileReader fichero = new FileReader("este fichero no existe");
+En este otro caso, Java nos hace llegar una instancia de la clase FileNotFoundException.
+
+## Tipos de excepciones
+### Excepciones irrecuperables: 
+Hijas de Error. Son errores de la propia máquina virtual de Java.
+### Excepciones que NO es necesario gestionar: 
+Hijas de RunTimeException. Son excepciones muy comunes, por ejemplo NullPointerException, ArrayIndexOutOfBoundsException.
+### Excepciones que es necesario gestionar: 
+Hijas de Exception. Todas las demás, por ejemplo IOException.
+
+### Cómo se gestiona una excepción
+Java proporciona un mecanismo para la gestión de excepciones: los bloques try...catch[...finally]
+```
+    try{
+
+    FileReader fichero = new FileReader("nombre del fichero");
+
+    } catch (FileNotFoundException e) {
+
+        e.printStackTrace();
+    }
+```
+#### Como ves, el bloque finally es opcional.
+
+### Cómo se gestiona una excepción
+Un buen estilo de programación implica cerrar los ficheros una vez que hemos acabado de trabajar con ellos.
+```
+FileReader fichero = null;
+
+try{
+
+    fichero = new FileReader("nombre del fichero");
+
+    } catch (FileNotFoundException e) {
+
+        e.printStackTrace();
+
+    } finally {
+
+        if(fichero != null) fichero.close();
+
+    }
+```
+#### Pero, el método close() también puede producir un error de tipo IOException, luego me exige un nuevo bloque try...catch.
+
+Lo podemos escribir del siguiente modo:
+```
+FileReader fichero = null;
+
+try{
+
+    fichero = new FileReader("nombre del fichero");
+
+    } catch (FileNotFoundException e) {
+
+        e.printStackTrace();
+
+     } finally {
+
+    try {
+
+    if(fichero != null)fichero.close();
+
+    } catch (IOException e) {
+
+    e.printStackTrace();
+    }
+
+}
+```
+El bloque anterior de código es bastante obtuso.
+
+El truco es el siguiente:
+````
+try {
+    try {
+        fichero = new FileReader("Hola");
+    } finally {
+    fichero.close();
+    }
+  } catch(FileNotFoundException e) {
+        e.printStackTrace();
+  } catch (IOException e) {
+        e.printStackTrace();
+}
+````
 
 
 ## Colletions
