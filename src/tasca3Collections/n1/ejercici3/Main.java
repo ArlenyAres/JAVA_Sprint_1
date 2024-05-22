@@ -31,10 +31,9 @@ public class Main {
                 paisesMap.put(key, value);
             }
 
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al leer en el archivo de paises: " + ex.getMessage());
         }
 
         System.out.println("Dime tu nombre ");
@@ -73,7 +72,7 @@ public class Main {
             bufferedWriter.write("Nombre: " + nombre + "\n" + "Puntuacion: " + puntos + "\n");
             bufferedWriter.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error al escribir en el archivo de classificacio: " + e.getMessage());
         }
 
 
