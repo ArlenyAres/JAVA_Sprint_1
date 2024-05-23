@@ -1,7 +1,5 @@
 package tasca5JavaUtils.n2;
 
-import tasca5JavaUtils.n1.DirectorioListador;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -19,20 +17,18 @@ public class Main {
 
         File directorio = new File(prop.getProperty("directorioLeer"));
 
-        ArrayList<String> listaDirectorio = new ArrayList<String>();
+        ArrayList<String> listaDirectorio = new ArrayList<>();
 
         DirectorioListador.listaContenidoAlfabetico(directorio, listaDirectorio, 0);
 
         System.out.println(DirectorioListador.contenido);
 
 
-        try {
-            FileWriter fw = new FileWriter(prop.getProperty("directorioTxt") +
-                    prop.getProperty("nombreTxt") );
+        try (FileWriter fw = new FileWriter(prop.getProperty("directorioTxt") +
+                prop.getProperty("nombreTxt") )) {
             fw.write(DirectorioListador.contenido);
-            fw.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Objeto no encontrado" + e.getMessage());
         }
 
     }
