@@ -1,6 +1,6 @@
-package tasta6Genericos.n2.ejercicio1;
+package tasca6Genericos.n2.ejercicio1;
 
-import tasta6Genericos.n1.ejercicio2.Persona;
+import tasca6Genericos.n1.ejercicio2.Persona;
 
 import java.util.Arrays;
 

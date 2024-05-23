@@ -1,4 +1,4 @@
-package tasta6Genericos.n2.ejercicio1;
+package tasca6Genericos.n2.ejercicio1;
 
 import java.util.ArrayList;
 import java.util.Arrays;

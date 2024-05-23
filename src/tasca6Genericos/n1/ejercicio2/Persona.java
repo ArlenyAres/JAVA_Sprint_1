@@ -1,4 +1,4 @@
-package tasta6Genericos.n1.ejercicio2;
+package tasca6Genericos.n1.ejercicio2;
 
 public class Persona {
 
