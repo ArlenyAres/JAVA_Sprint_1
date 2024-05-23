@@ -17,35 +17,37 @@ Java Compiler (Compilador de Java), el compilador que convierte el código fuent
 Especifica los archivos Java a compilar. En este caso, todos los archivos dentro del directorio src/main/java/tasca5JavaUtils/n1/.
 
 
-## Compilación Nivel 1
-
 Primero, necesitamos compilar todos los archivos `.java` ubicados en el directorio `src` :
 
-### 1 Navegar al directorio del proyecto
+Navegar al directorio del proyecto
 
-```
+Comando:
  cd /Users/Ares/IdeaProjects/ItAcademy2024/Sprint_1
- ```
 
-### 2. Compilar las clases Java:
 
-```
+## Compilación Nivel 1
+
+Compilar las clases Java:
+
+Comando
 javac src/tasca5JavaUtils/n1/*.java
-```
+
+
+Ejecutar los ejercicios Nivel 1
+
+Comando
+java src/tasca5JavaUtils/n1/Main.java
+
 
 ## Compilación Nivel 2
 
- ### 2. Compilar las clases Java:
- ```
+Compilar las clases Java:
+
+comando
 javac src/tasca5JavaUtils/n2/*.java
-```
 
-## Ejecutar los ejercicios Nivel 1
-
-``
-java src/tasca5JavaUtils/n1/Main.java
-``
 
 ## Ejecutar los ejercicios Nivel 2
 
+comando
 java src/tasca5JavaUtils/n2/Main.java
