@@ -295,7 +295,182 @@ try {
 
 
 ## Colletions
+
 N2 ejecicio 2
 List<Restaurante> sortedRestaurantes = restaurantes.stream()
 .sorted(Comparator.comparing(Restaurante::getNombre).thenComparingInt(Restaurante::getPuntuacion))
 .collect(Collectors.toList());
+
+
+
+
+## Anotaciones 
+
+
+
+### Nivel 2
+
+En Jackson, los serializadores personalizados son clases que extienden la clase abstracta StdSerializer<T>, donde T es el tipo de objeto que deseas serializar.
+De manera similar, los deserializadores personalizados son clases que extienden la clase abstracta JsonDeserializer<T>, donde T es el tipo de objeto que deseas deserializar.
+
+Registro de Serializador y Deserializador Personalizados 
+
+```
+SimpleModule module = new SimpleModule();
+```
+Jackson utiliza módulos (SimpleModule) para agrupar y registrar varios componentes de personalización como serializadores y deserializadores. 
+Un SimpleModule permite registrar estos componentes para clases específicas.
+
+Añadir el serializador personalizado:
+
+```
+module.addSerializer(Cl`iente.class, new CustomClienteSerializer());
+```
+Esta línea registra un serializador personalizado (CustomClienteSerializer) para la clase Cliente. Cuando Jackson encuentra un objeto de la clase Cliente que necesita ser serializado, utilizará CustomClienteSerializer para convertir el objeto en JSON.
+Aquí es donde defines cómo se debe estructurar el JSON resultante.
+
+Añadir el deserializador personalizado: 
+```
+module.addDeserializer(Cliente.class, new CustomClienteDeserializer());
+
+```
+
+De manera similar, esta línea registra un deserializador personalizado (CustomClienteDeserializer) para la clase Cliente. Cuando Jackson encuentra un JSON que necesita ser deserializado en un objeto de la clase Cliente, utilizará CustomClienteDeserializer para convertir el JSON en un objeto Cliente.
+Aquí es donde defines cómo leer el JSON y convertirlo de vuelta en un objeto Cliente.
+
+Registrar el módulo en el ObjectMapper:
+```
+mapper.registerModule(module);
+
+```
+Finalmente, esta línea registra el módulo que has configurado en el ObjectMapper. Esto le dice a Jackson que utilice los serializadores y deserializadores personalizados definidos
+en module cuando trabaje con objetos de la clase Cliente.
+
+JsonDeserializer es una clase abstracta en la biblioteca Jackson que se utiliza para definir cómo deserializar un objeto JSON a un objeto Java de tipo específico. 
+Esto es útil cuando necesitas un control personalizado sobre el proceso de deserialización, más allá de lo que Jackson proporciona por defecto.
+
+
+```
+
+Declara una clase pública llamada CustomClienteDeserializer que extiende JsonDeserializer para la clase Cliente
+
+
+public class CustomClienteDeserializer extends JsonDeserializer<Cliente> {
+
+
+
+ Sobrescribe el método deserialize, que toma un JsonParser y un DeserializationContext como parámetros
+    
+    @Override
+    public Cliente deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        
+        
+        // Lee el arbol JSON completo desde el JsonParser y lo almacena en un JsonNode
+        JsonNode node = p.getCodec().readTree(p);
+        
+        // Obtiene el valor del campo "nombre" del nodo JSON y lo almacena en la variable nombre
+        String nombre = node.get("nombre").asText();
+        
+        // Obtiene el valor del campo "apellido" del nodo JSON y lo almacena en la variable apellido
+        String apellido = node.get("apellido").asText();
+        
+        // Obtiene el valor del campo "dni" del nodo JSON y lo almacena en la variable dni
+        String dni = node.get("dni").asText();
+        
+        // Obtiene el valor del campo "telefono" del nodo JSON y lo almacena en la variable telefono
+        int telefono = node.get("telefono").asInt();
+
+        // Crea y devuelve una nueva instancia de Cliente utilizando los valores obtenidos del JSON
+        return new Cliente(nombre, apellido, dni, telefono);
+    }
+}
+```
+
+
+
+
+Una forma de deserializar
+```
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import java.io.IOException;
+
+public class CustomClienteDeserializer extends JsonDeserializer<Cliente> {
+
+    @Override
+    public Cliente deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+        JsonNode node = p.getCodec().readTree(p);  // Leer el arbol JSON
+        String nombre = node.get("nombre").asText();  // Obtener el campo "nombre"
+        String apellido = node.get("apellido").asText();  // Obtener el campo "apellido"
+        String dni = node.get("dni").asText();  // Obtener el campo "dni"
+        int telefono = node.get("telefono").asInt();  // Obtener el campo "telefono"
+
+        // Ejemplo de uso del contexto de deserialización para manejar excepciones
+        try {
+            if (node.get("telefono").isInt()) {
+                telefono = node.get("telefono").intValue();
+            } else {
+                throw ctxt.mappingException("El campo 'telefono' debe ser un entero");
+            }
+        } catch (Exception e) {
+            // Manejo de excepción usando el contexto de deserialización
+            ctxt.handleWeirdStringValue(Integer.class, node.get("telefono").asText(), "No se pudo convertir 'telefono' a entero");
+        }
+
+        return new Cliente(nombre, apellido, dni, telefono);
+    }
+}
+```
+Registrar los Serializadores y Deserializadores en ObjectMapper
+
+```
+
+
+import java.io.File;
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+
+            // Registrar serializador y deserializador personalizados
+            SimpleModule module = new SimpleModule();
+            module.addSerializer(Cliente.class, new CustomClienteSerializer());
+            module.addDeserializer(Cliente.class, new CustomClienteDeserializer());
+            mapper.registerModule(module);
+
+            // Crear un objeto Cliente
+            Cliente cliente = new Cliente("Javier", "Cevedo", "2654238L", 67898764);
+
+            // Serializar el objeto Cliente a JSON y escribir en un archivo
+            mapper.writeValue(new File("Cliente.json"), cliente);
+
+            // Deserializar el JSON desde el archivo a un objeto Cliente
+            Cliente deserializedCliente = mapper.readValue(new File("Cliente.json"), Cliente.class);
+
+            // Imprimir el objeto deserializado
+            System.out.println("Cliente deserializado: " + deserializedCliente.getNombre() + " " +
+                    deserializedCliente.getApellido() + " " +
+                    deserializedCliente.getDni() + " " +
+                    deserializedCliente.getTelefono());
+        } catch (DatabindException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+```
