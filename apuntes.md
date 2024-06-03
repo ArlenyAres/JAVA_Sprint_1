@@ -474,3 +474,85 @@ public class Main {
 }
 
 ```
+
+## LAMBDAS
+
+
+### Ejercicio 1
+
+En este ejercicio, se utiliza el método `stream()` para convertir una lista de Strings en un Stream, seguido por el método `filter()` para filtrar aquellos elementos que contienen la letra 'o'. Finalmente, se usa `collect()` para recolectar los resultados filtrados en una nueva lista. La razón por la cual esto es considerado una operación lambda es porque permite realizar operaciones complejas sobre colecciones de datos de manera concisa y legible, evitando bucles explícitos.
+
+### Ejercicio 2
+
+Similar al Ejercicio 1, aquí se utiliza `stream()`, `filter()` y `collect()`. Sin embargo, la condición dentro de `filter()` es más compleja, incluyendo una comprobación adicional de longitud de cadena. Esto demuestra cómo las lambdas pueden encapsular lógica compleja en una sola línea, haciendo el código más limpio y fácil de entender.
+
+### Ejercicio 3
+
+Este ejercicio muestra cómo usar una expresión lambda directamente en un método que espera una función (en este caso, `forEach`). La lambda simplemente imprime cada elemento de la lista. Este ejemplo ilustra cómo las lambdas pueden ser utilizadas para reemplazar implementaciones de métodos específicos, permitiendo una mayor flexibilidad y concisión en el código.
+
+### Ejercicio 4
+
+Aquí, se utiliza una referencia de método (`method reference`) en lugar de una expresión lambda. El objetivo es demostrar que las referencias de métodos son otra forma de trabajar con funciones anónimas en Java, ofreciendo una sintaxis aún más concisa cuando se desea invocar un método existente de una clase.
+
+### Tipos de métodos de referencia
+En Java, existen cuatro tipos de métodos de referencia:
+#### Referencia a un método estático: 
+Se utiliza para referenciar métodos estáticos de una clase.
+#### Referencia a un método de instancia de un objeto particular: 
+Permite referenciar métodos de instancia de un objeto específico.
+#### Referencia a un método de instancia de una clase arbitraria: 
+Se utiliza para referenciar métodos de instancia de cualquier objeto de una clase específica.
+#### Referencia a un constructor: 
+Nos permite referenciar constructores de una clase.
+
+### Ejercicio 5
+
+Este ejercicio introduce la idea de interfaces funcionales (`Functional Interfaces`), que son interfaces con solo un método abstracto. Se define una interfaz `PiCalculator` con un único método `getPiValue()`, y luego se crea una instancia de esta interfaz usando una expresión lambda. Esto demuestra cómo las interfaces funcionales permiten definir contratos para comportamientos específicos, que pueden ser implementados con cualquier tipo de expresión lambda o método referenciado.
+
+### Ejercicio 6
+
+Se utiliza `stream()`, `sorted()` con un comparador basado en la longitud de las cadenas, y finalmente `collect()`. Este ejercicio muestra cómo las streams y las lambdas pueden ser combinadas para realizar operaciones de clasificación complejas de manera eficiente y legible.
+
+#### 1ro Creación de la Lista
+Dentro del método main, se crea una lista llamada mixtura que contiene una mezcla de números enteros y cadenas de texto.
+```
+List<Object> mixtura = Arrays.asList(1, "uno", "dos", "tres", "cuatro", "cinco");
+```
+#### Procesamiento de la Lista con Streams
+Para ordenar la lista, se utiliza un stream, que es una secuencia de elementos procesados en paralelo. Los streams son una característica introducida en Java 8 para trabajar con colecciones de manera más eficiente y funcional.
+
+####  Ordenamiento
+El método sorted() se aplica al stream para ordenar sus elementos. Se le pasa un Comparator que define cómo deben compararse los elementos para el ordenamiento.
+```
+.sorted(Comparator.comparingInt(Object::toString.length))
+```
+El Comparator se crea usando Comparator.comparingInt(), que toma una función que extrae una clave de comparación de cada objeto. En este caso, Object::toString.length es una referencia de método que convierte cada objeto a una cadena y obtiene su longitud, que será la clave de comparación.
+
+#### Recolectar Resultados
+
+Después de ordenar los elementos, se utiliza collect() para recolectar los elementos ordenados en una nueva lista.
+```
+.collect(Collectors.toList());
+
+```
+Collectors.toList() es un recolector que transforma el stream en una lista.
+
+#### Impresión del Resultado
+Finalmente, se imprime la lista ordenada.
+```
+System.out.println(ordenadoPorLongitud);
+```
+
+
+
+### Ejercicio 7
+
+Similar al Ejercicio 6, pero con la adición de `Comparator.reverseOrder()` para invertir el orden de clasificación. Esto demuestra cómo las lambdas y streams pueden ser utilizadas para manipular datos de formas complejas y dinámicas, adaptándose a diferentes requisitos de ordenamiento.
+
+### Ejercicio 8
+
+Este ejercicio combina la creación de una interfaz funcional con la definición de una expresión lambda para implementarla. Al igual que el Ejercicio 5, demuestra el uso de interfaces funcionales y lambdas para definir y ejecutar comportamientos específicos de manera flexible.
+
+El objetivo general de estos ejercicios es aprender a manejar la programación funcional con lambdas en Java, lo cual implica entender cómo las lambdas pueden ser utilizadas para crear expresiones de alto nivel que encapsulan acciones complejas, cómo las interfaces funcionales definen contratos para comportamientos específicos, y cómo las streams y las referencias de métodos complementan las capacidades de las lambdas para trabajar con colecciones de datos de manera eficiente y legible.
+
+Citations:
