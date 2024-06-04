@@ -476,6 +476,7 @@ public class Main {
 ```
 
 ## LAMBDAS
+https://www.arquitecturajava.com/java-lambda/
 
 
 ### Ejercicio 1
@@ -555,4 +556,4 @@ Este ejercicio combina la creación de una interfaz funcional con la definición
 
 El objetivo general de estos ejercicios es aprender a manejar la programación funcional con lambdas en Java, lo cual implica entender cómo las lambdas pueden ser utilizadas para crear expresiones de alto nivel que encapsulan acciones complejas, cómo las interfaces funcionales definen contratos para comportamientos específicos, y cómo las streams y las referencias de métodos complementan las capacidades de las lambdas para trabajar con colecciones de datos de manera eficiente y legible.
 
-Citations:
+

@@ -11,7 +11,7 @@ public class Ejercicio3 {
                 "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre");
 
 
-        meses.forEach(System.out::println);
+        meses.forEach( mes -> System.out.println(mes));
 
 
     }

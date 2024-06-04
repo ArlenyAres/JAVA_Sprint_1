@@ -9,7 +9,8 @@ public class Ejercicio2 {
 
         List<String> lista = Arrays.asList("Hey", "Caramelo", "Mar", "Flores", "Romero", "Venezuela", "Juliana");
 
-        List<String> listaFiltrada = (List<String>) lista.stream().filter(s -> s.contains("o") && s.length() > 5)
+        List<String> listaFiltrada = (List<String>) lista.stream()
+                 .filter(s -> s.contains("o") && s.length() > 5)
                 .collect( Collectors.toList());
         System.out.println(listaFiltrada);
     }
